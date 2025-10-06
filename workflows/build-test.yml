@@ -1,0 +1,21 @@
+name: Build e Testes Automatizados
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fazer checkout do código
+        uses: actions/checkout@v4
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar dependências
+        run: npm install jest --save-dev
+      - name: Simular build
+        run: echo "Executando build do projeto (HTML/CSS/JS)..."
+      - name: Executar testes
+        run: npx jest --passWithNoTests
